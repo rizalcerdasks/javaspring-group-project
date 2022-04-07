@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -107,14 +108,28 @@ public class AppController {
 
 	}
 
+//	@RequestMapping("/book")
+//	public String getBookPage(Model model) {
+//		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+//		System.out.println(currentUsername);
+//		
+//		List<Books> listBooks = bookService.listAll();
+//		model.addAttribute("username", currentUsername);
+//		model.addAttribute("listBooks", listBooks);
+//		System.out.println(listBooks);
+//		return "template_all_book";
+//
+//	}
+	
 	@RequestMapping("/book")
-	public String getBookPage(Model model) {
+	public String getBookPage(Model model,  @Param("keyword") String keyword) {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 		System.out.println(currentUsername);
 		
-		List<Books> listBooks = bookService.listAll();
+		List<Books> listBooks = bookService.listAllSearch(keyword);
 		model.addAttribute("username", currentUsername);
 		model.addAttribute("listBooks", listBooks);
+		model.addAttribute("keyword", keyword);
 		System.out.println(listBooks);
 		return "template_all_book";
 

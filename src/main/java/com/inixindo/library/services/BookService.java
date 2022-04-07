@@ -19,6 +19,15 @@ public class BookService {
 		// TODO Auto-generated method stub
 		return bookRepository.findAll();
 	}
+	
+	public List<Books> listAllSearch(String keyword) {
+		// TODO Auto-generated method stub
+		if (keyword != null) {
+			return bookRepository.search(keyword);
+		} else {
+			return bookRepository.findAll();
+		}
+	}
      
 	public Books save(Books books) {
 		// TODO Auto-generated method stub

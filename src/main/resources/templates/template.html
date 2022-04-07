@@ -61,24 +61,12 @@
 									<li class="nav-item active">
 										<a class="nav-link" href="#">Home</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">About</a>
+									<li class="nav-item ">
+										<a class="nav-link" href="#" type="button" data-toggle="modal"
+											data-target="#modalregister">Join
+											Now </a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Computer</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Laptop</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Products</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Contact Us</a>
-									</li>
-									<li class="nav-item d_none">
-										<a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-									</li>
+
 									<li class="nav-item d_none">
 										<a class="nav-link" href="#" type="button" data-toggle="modal"
 											data-target="#modallogin">Login</a>
@@ -216,7 +204,7 @@
 										<span>New</span>
 										<h1>Spring Collection</h1>
 										<p>More than 1000+ new book from famous writers</p>
-										<a href="/login">Read Now </a>
+										<a href="#ourbook">Read Now </a>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -240,7 +228,7 @@
 				<div class="col-md-12">
 					<div class="titlepage">
 						<h2>Our Books</h2>
-						<div class="products">
+						<div class="products" id="ourbook">
 							<div class="row">
 								<div class="col-md-3 col-sm-6" th:each="books : ${listBooks}">
 									<div class="card card-block">
@@ -265,54 +253,29 @@
 
 
 
-		<footer>
-			<div class="footer">
+	<footer>
+		<div class="footernew">
+
+			<div class="copyright">
 				<div class="container">
 					<div class="row">
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-							<h3>Find Us</h3>
-							<ul class="social_icon">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-							<h3>About Us</h3>
-							<ul class="about_us">
-								<li>MyLyb is an online library<br> from Indonesia since 2022 <br> Enjoy Read!</li>
-							</ul>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-							<h3>Contact Us</h3>
-							<ul class="conta">
-								<li>Phone: <br> +62 2184 9835 <br> +62 2184 9934</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html
-										Templates</a></p>
-							</div>
+						<div class="col-md-12">
+							<p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html
+									Templates</a></p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</footer>
+		</div>
+	</footer>
 
-
-		<script th:src="@{/js/jquery.min.js}"></script>
-		<script th:src="@{/js/popper.min.js}"></script>
-		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-		<script th:src="@{/js/jquery-3.0.0.min.js}"></script>
-		<!-- sidebar -->
-		<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
-		<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/jquery-3.0.0.min.js}"></script>
+	<!-- sidebar -->
+	<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
 
 </body>
 
