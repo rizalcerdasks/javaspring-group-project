@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+	<meta charset="utf-8" />
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+	<!-- site metas -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
+	<!-- style css -->
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<!-- Responsive-->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+	<!-- fevicon -->
+	<link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif" />
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}" />
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" th:href="@{https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css}" />
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css}"
+		media="screen" />
+
+<title>Book Loans</title>
+</head>
+
+<body class="main-layout inner_posituong computer_page">
+<header>
+		<!-- header inner -->
+		<div class="header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+						<div class="full">
+							<div class="center-desk">
+								<div class="logo">
+									<a class="navbar-brand nav-link disabled text-white">MYLYB</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<nav class="navigation navbar navbar-expand-md navbar-dark ">
+							<button class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarsExample04">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active dropdown">
+										<a class="nav-link dropdown-toggle" href="#" role="button"
+											data-toggle="dropdown" aria-expanded="false">Books</a>
+										<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+											<li><a class="dropdown-item" th:href="@{/book}">Books Collection</a></li>
+											<li><a class="dropdown-item" th:href="@{/book/new}">Add New Books</a></li>
+											<li><a class="dropdown-item" th:href="@{/book/newPublisher}">Add New Publisher</a>
+											</li>
+											<li><a class="dropdown-item" th:href="@{/book/newAuthor}">Add New Author</a></li>
+										</ul>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link dropdown-toggle" href="#" role="button"
+											data-toggle="dropdown" aria-expanded="false">Loans</a>
+										<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+											<li><a class="dropdown-item" th:href="@{/loans}">On Loan</a></li>
+											<li><a class="dropdown-item" th:href="@{/loans/new}">Add New Loan</a></li>
+										</ul>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" href="/logout">Logout</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--Navbar Section -->
+	<div class="container my-2" style="min-height: 500px;">
+		
+
+		<!--Table Section -->
+		<div class="card">
+			<div class="card-body">
+				<div th:switch="${listLoans}" class="container my-5">
+
+					<div class="col-md">
+						<h2 th:case="null">No Loans yet!</h2>
+						<div th:case="*">
+
+							<br />
+							<h3>Loan List</h3>
+							<table class="table table-striped table-responsive-md">
+								<a class="btn btn-success" href="/loans/new">New Loan</a>
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Book Title</th>
+										<th scope="col">Borrowed By</th>
+										<th scope="col">Date Out</th>
+										<th scope="col">Due Date</th>
+										<th scope="col">Return</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="loan : ${listLoans}">
+
+										<td th:text="${loan.LoansID}">loans id</td>
+										<td th:text="${loan.books.title}">Book Id</td>
+										<td th:text="${loan.borrower.username}">card no</td>
+										<td th:text="${loan.DateOut}">Date Out</td>
+										<td th:text="${loan.DueData}">Due Date</td>
+										<td>
+										<a
+											th:href="@{'return_book/' + ${loan.books.BookID}} + '/' + ${loan.LoansID}"
+											class="btn btn-danger btn-sm py-1 "
+											th:data-confirm-delete="|Are you sure you want to return ${loan.books.title}?|"
+											onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+												Return </a>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+	<script>
+		$('#confirm-delete').on('click', '.btn-ok', function (e) {
+			var $modalDiv = $(e.delegateTarget);
+			var id = $(this).data('recordId');
+			// $.ajax({url: '/api/record/' + id, type: 'DELETE'})
+			// $.post('/api/record/' + id).then()
+			$modalDiv.addClass('loading');
+			setTimeout(function () {
+				$modalDiv.modal('hide').removeClass('loading');
+			}, 1000)
+		});
+		$('#confirm-delete').on('show.bs.modal', function (e) {
+			var data = $(e.relatedTarget).data();
+			$('.title', this).text(data.recordTitle);
+			$('.btn-ok', this).data('recordId', data.recordId);
+		});
+	</script>
+	<footer>
+			<div class="footernew">
+
+				<div class="copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html
+										Templates</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+</body>
+
+</html>

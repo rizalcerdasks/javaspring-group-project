@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+	<!-- site metas -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
+	<!-- style css -->
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<!-- Responsive-->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+	<!-- fevicon -->
+	<link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif" />
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}" />
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" th:href="@{https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css}" />
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css}"
+		media="screen" />
+
+	<title> Book Home</title>
+</head>
+
+<body class="main-layout">
+
+	<header>
+		<!-- header inner -->
+		<div class="header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+						<div class="full">
+							<div class="center-desk">
+								<div class="logo">
+									<a class="navbar-brand nav-link disabled text-white">MYLYB</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<nav class="navigation navbar navbar-expand-md navbar-dark ">
+							<button class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarsExample04">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active">
+										<a class="nav-link" href="#">Home</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">About</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Computer</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Laptop</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Products</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Contact Us</a>
+									</li>
+									<li class="nav-item d_none">
+										<a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+									</li>
+									<li class="nav-item d_none">
+										<a class="nav-link" href="#" type="button" data-toggle="modal"
+											data-target="#modallogin">Login</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Modal Login -->
+
+	<div class="modal fade" id="modallogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div style="width:400px;" class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header d-flex justify-content-center">
+					<strong>
+						<h3 class="modal-title" id="exampleModalLabel">Login</h3>
+					</strong>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/login}" th:object="${borrower}" method="post">
+						<div class="mb-3">
+							<label class="form-label">Username</label>
+							<input type="text" class="form-control" th:field="*{username}" placeholder="Enter Username"
+								required>
+						</div>
+						<div class="mb-4">
+							<label class="form-label">Password:</label>
+							<input type="password" class="form-control" th:field="*{password}"
+								placeholder="Enter Password" required>
+						</div>
+						<div class="mb-2 d-flex justify-content-center">
+							<input type="submit" class="btn btn-success" value="Login" />
+						</div>
+						<div class="mb-2 d-flex justify-content-center">
+							<a href="#" type="button" data-dismiss="modal" data-toggle="modal"
+								data-target="#modalregister">Didn't have account ? </a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end modal login -->
+
+
+	<!-- modal register -->
+
+	<div class="modal fade" id="modalregister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header d-flex justify-content-center">
+					<strong>
+						<h3 class="modal-title" id="exampleModalLabel">Registration Form</h3>
+					</strong>
+				</div>
+				<div class="modal-body">
+					<form class="" th:action="@{/save_borrower}" th:object="${borrower}" method="post">
+
+						<div class="form-group">
+							<label for="title">User name</label> <input type="text" class="form-control" id="User name"
+								placeholder="User name" th:field="*{username}" required>
+						</div>
+						<div class="form-group">
+							<label for="title">Password</label> <input type="password" class="form-control"
+								id="Password" placeholder="Enter Password" th:field="*{password}" required>
+						</div>
+						<div class="form-group">
+							<label for="title">Name</label> <input type="text" class="form-control" id="Name"
+								placeholder="Enter Name" th:field="*{name}" required>
+						</div>
+						<div class="form-group">
+							<label for="title">Phone</label> <input type="tel" class="form-control" id="Phone"
+								placeholder="Enter Phone" th:field="*{phone}" required>
+						</div>
+						<div class="form-group">
+							<label for="title">Address</label> <input type="text" class="form-control mb-4" id="Address"
+								placeholder="Enter Address" th:field="*{address}" required>
+						</div>
+						<input type="hidden" name="Role" value="BORROWER" />
+						<div class="mb-2 d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- end modal register-->
+
+
+
+	<section class="banner_main">
+		<div id="banner1" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#banner1" data-slide-to="0" class="active"></li>
+				<li data-target="#banner1" data-slide-to="1"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="text-bg">
+										<span>Let's Join Our</span>
+										<h1>Membership</h1>
+										<p>Free registration and membership fee for 1 year</p>
+										<a href="#" type="button" data-toggle="modal" data-target="#modalregister">Join
+											Now </a>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="text_img">
+										<figure><img
+												th:src="@{https://purepng.com/public/uploads/large/purepng.com-studentsstudentcollege-studentschool-studentstudentsmale-female-1421526923940s5xkq.png}"
+												alt="#" /></figure>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="container">
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="text-bg">
+										<span>New</span>
+										<h1>Spring Collection</h1>
+										<p>More than 1000+ new book from famous writers</p>
+										<a href="/login">Read Now </a>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="text_img">
+										<figure><img
+												th:src="@{https://www.pngall.com/wp-content/uploads/2018/05/Books-High-Quality-PNG.png}"
+												alt="#" /></figure>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="products">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titlepage">
+						<h2>Our Books</h2>
+						<div class="products">
+							<div class="row">
+								<div class="col-md-3 col-sm-6" th:each="books : ${listBooks}">
+									<div class="card card-block">
+										<img style="height:320px; width:240px;"
+											src="https://1.bp.blogspot.com/-aQ6hsKfT9go/XyOE32DrCsI/AAAAAAAACHE/04SWYBvGNu4Y44YBuuLlwltW9BZoVBY3gCLcBGAsYHQ/s1600/10%2B-%2BThe%2BDa%2BVinci%2BCode.jpg"
+											alt="Photo of sunset">
+										<h5 style="padding-bottom:0; text-align:center;" class="card-title mt-2 "
+											th:text="${books.title}">Judul</h5>
+										<h5 style="padding-bottom:0; text-align:center;" class="card-title  mb-2"
+											th:text="${books.authors.AuthorName}">Penulis</h5>
+										<!--<p style="padding-left:5%;padding-right:auto;" class="card-text">This is a company that builds
+							websites, web apps and e-commerce solutions.</p>-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+		<footer>
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+							<h3>Find Us</h3>
+							<ul class="social_icon">
+								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+							<h3>About Us</h3>
+							<ul class="about_us">
+								<li>MyLyb is an online library<br> from Indonesia since 2022 <br> Enjoy Read!</li>
+							</ul>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+							<h3>Contact Us</h3>
+							<ul class="conta">
+								<li>Phone: <br> +62 2184 9835 <br> +62 2184 9934</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html
+										Templates</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/popper.min.js}"></script>
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/js/jquery-3.0.0.min.js}"></script>
+		<!-- sidebar -->
+		<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+		<script th:src="@{/js/custom.js}"></script>
+
+</body>
+
+</html>
