@@ -91,7 +91,7 @@
 					</strong>
 				</div>
 				<div class="modal-body">
-					<form th:action="@{/login}" th:object="${borrower}" method="post">
+					<form th:action="@{/}" th:object="${borrower}" method="post">
 						<div class="mb-3">
 							<label class="form-label">Username</label>
 							<input type="text" class="form-control" th:field="*{username}" placeholder="Enter Username"
@@ -233,7 +233,7 @@
 								<div class="col-md-3 col-sm-6" th:each="books : ${listBooks}">
 									<div class="card card-block">
 										<img style="height:320px; width:240px;"
-											src="https://1.bp.blogspot.com/-aQ6hsKfT9go/XyOE32DrCsI/AAAAAAAACHE/04SWYBvGNu4Y44YBuuLlwltW9BZoVBY3gCLcBGAsYHQ/s1600/10%2B-%2BThe%2BDa%2BVinci%2BCode.jpg"
+											src="https://perpustakaan.kemenkeu.go.id/img/FileCover/3-10438022018.jpg"
 											alt="Photo of sunset">
 										<h5 style="padding-bottom:0; text-align:center;" class="card-title mt-2 "
 											th:text="${books.title}">Judul</h5>

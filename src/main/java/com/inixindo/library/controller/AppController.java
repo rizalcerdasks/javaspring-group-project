@@ -64,9 +64,9 @@ public class AppController {
 //		return "login";
 //	}
 
-	@PostMapping("/login")
+	@PostMapping("/")
 	public String masuk() {
-		return "login";
+		return "template";
 	}
 
 	@RequestMapping("/default")
@@ -136,12 +136,17 @@ public class AppController {
 	}
 	
 	@RequestMapping("/all_book_user")
-	public String getBookPageUser(Model model) {
-		List<Books> listBooks = bookService.listAll();
+	public String getBookPageUser(Model model, @Param("keyword") String keyword) {
+//		List<Books> listBooks = bookService.listAll();
+//		model.addAttribute("listBooks", listBooks);
+//		System.out.println(listBooks);
+//		return "all_book_user";
+
+		List<Books> listBooks = bookService.listAllSearch(keyword);
 		model.addAttribute("listBooks", listBooks);
+		model.addAttribute("keyword", keyword);
 		System.out.println(listBooks);
 		return "all_book_user";
-
 	}
 	
 	@RequestMapping("/user_history")
@@ -289,7 +294,7 @@ public class AppController {
 		} else {
 			borrowerService.save(borrower);
 			System.out.println(borrower);
-			return "redirect:/login";
+			return "redirect:/";
 		}
 	}
 }

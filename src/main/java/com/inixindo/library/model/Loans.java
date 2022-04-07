@@ -2,6 +2,7 @@ package com.inixindo.library.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Loans {
 	@Column(nullable = false)
 	public String DueData;
 
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="bookid")
 	public Books books;
 	
